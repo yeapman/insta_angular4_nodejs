@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  background-color:#32CCFF;
+  height:80px;
+}
+.logo {
+  -webkit-flex-grow:1;
+  flex-grow:1;
+}
+.login {
+  -webkit-flex-grow:3;
+  flex-grow:3;
+  display: flex;
+  flex-direction: row;
+}
+.search {
+  -webkit-flex-grow:1;
+  flex-grow:1;
+}
+.sign-up {
+  -webkit-flex-grow:1;
+  flex-grow:1;
+}
+.sign-in {
+  -webkit-flex-grow:1;
+  flex-grow:1;
+}
