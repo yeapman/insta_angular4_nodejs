@@ -1,0 +1,14 @@
+.main-menu {
+  background-color: white;
+}
+.content {
+background-color:black;
+  width: 70%;
+  margin: 0 auto;
+}
+.site-description span {
+  color: white;
+}
+.site-description {
+  text-align: center;
+}
