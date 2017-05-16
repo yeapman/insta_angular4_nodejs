@@ -24,6 +24,10 @@
 .search {
   -webkit-flex-grow:1;
   flex-grow:1;
+  line-height: 45px;
+}
+.search img {
+  vertical-align: middle;
 }
 .sign-up {
   -webkit-flex-grow:1;
