@@ -2,7 +2,6 @@
   background-color: white;
 }
 .content {
-/*background-color:black;*/
   width: 90%;
   margin: 0 auto;
 }
@@ -18,4 +17,14 @@
 .shell {
   background-color: greenyellow;
   margin: 0 auto;
+}
+.images  {
+  border: 1px solid #040404;
+  display: flex;
+  flex-direction: row;
+}
+.shell {
+  -webkit-flex-grow:1;
+  flex-grow:1;
+  max-width: 30%;
 }
