@@ -2,9 +2,11 @@
 var express = require('express');
 var path = require('path');
 var http = require('http');
+var fs = require('fs');
 var bodyParser = require('body-parser');
 var app = express();
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 var url = 'mongodb://localhost:27017/databasePlumbum';
 var UserController = require('./server/UserController');
 mongoose.connect(url);
@@ -13,17 +15,34 @@ db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function() {
   console.log('we are connected!');
 });
-var kotyaraSchema = mongoose.Schema({
-  name: String
-}, { collection: 'movie' });
-var kotyara = mongoose.model('Darcik', kotyaraSchema );
+// var kotyaraSchema = mongoose.Schema({
+//   name: String
+// }, { collection: 'movie' });
+// var kotyara = mongoose.model('Darcik', kotyaraSchema );
+//
+// var Imya = new kotyara({ name: 'Darsiiiii'});
+//
+// Imya.save(function(err, data) {
+//   if (err) return console.log(err);
+//   else console.log('Saved: ', data);
+// });
 
-var Imya = new kotyara({ name: 'Darsiiiii'});
 
-Imya.save(function(err, data) {
-  if (err) return console.log(err);
-  else console.log('Saved: ', data);
+var imgPath = 'C:/Users/Admin/Desktop/instaproject/pt/assets/img/imgtest.png';
+
+var schema = new Schema({
+  img: { data: Buffer, contentType: String}
+},  { collection: 'movie' });
+var A = mongoose.model('A', schema);
+
+var images = new A;
+images.img.data = fs.readFileSync(imgPath);
+images.img.contentType = 'image/png';
+images.save(function(err, a) {
+  if(err) throw err;
+else console.log('Saved img: ', a);
 });
+
 
 
 
