@@ -2,13 +2,20 @@
   background-color: white;
 }
 .content {
-background-color:black;
-  width: 70%;
+/*background-color:black;*/
+  width: 90%;
   margin: 0 auto;
 }
 .site-description span {
-  color: white;
+  color: #040404;
+  font-size: 18px;
 }
 .site-description {
   text-align: center;
+  height: 60px;
+  line-height: 60px;
+}
+.shell {
+  background-color: greenyellow;
+  margin: 0 auto;
 }

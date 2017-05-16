@@ -4,8 +4,7 @@
 .header {
   display: flex;
   flex-direction: row;
-  /*background-color:#040404;*/
-  background-color: red;
+  background-color:#040404;
   height:45px;
   width: 70%;
   margin: 0 auto;
