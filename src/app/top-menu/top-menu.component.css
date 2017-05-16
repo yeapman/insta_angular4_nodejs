@@ -1,18 +1,25 @@
+.header-back {
+  background-color: black;
+}
 .header {
   display: flex;
   flex-direction: row;
-  background-color:#32CCFF;
-  height:80px;
+  background-color:#040404;
+  height:45px;
+  width: 70%;
+  margin: 0 auto;
 }
 .logo {
-  -webkit-flex-grow:1;
-  flex-grow:1;
+  -webkit-flex-grow:5;
+  flex-grow:5;
+  line-height: 45px;
 }
 .login {
-  -webkit-flex-grow:3;
-  flex-grow:3;
+  -webkit-flex-grow:1;
+  flex-grow:1;
   display: flex;
   flex-direction: row;
+  line-height: 45px;
 }
 .search {
   -webkit-flex-grow:1;
@@ -25,4 +32,7 @@
 .sign-in {
   -webkit-flex-grow:1;
   flex-grow:1;
+}
+.logo span, .sign-in span, .sign-up span {
+  color: white;
 }
