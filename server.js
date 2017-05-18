@@ -1,19 +1,28 @@
 "use strict";
 var express = require('express');
+var mongo = require('mongoskin');
 var path = require('path');
 var http = require('http');
 var fs = require('fs');
-var bodyParser = require('body-parser');
 var app = express();
+app.use(express.bodyParser());
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var url = 'mongodb://localhost:27017/databasePlumbum';
+var url = mongo.url('mongodb://localhost:27017/databasePlumbum', {native_parser:true});
 var UserController = require('./server/UserController');
 mongoose.connect(url);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function() {
   console.log('we are connected!');
+});
+// app.param('darciks', function(req, res, next, darciks) {
+//   req.collection = url.collection(darciks)
+//   return next()
+// });
+
+url.bind('darciks');
+url.darciks.find().toArray(function(err, items) {
+  if(err) console.log(err); else(console.log(items));
 });
 // var kotyaraSchema = mongoose.Schema({
 //   name: String
@@ -28,23 +37,35 @@ db.once('open', function() {
 // });
 
 
-var imgPath = 'C:/Users/Admin/Desktop/instaproject/pt/assets/img/imgtest.png';
+// var imgPath = 'C:/Users/Admin/Desktop/instaproject/pt/assets/img/imgtest.png';
+// var imgSecondPath = 'C:/Users/Admin/Desktop/instaproject/pt/assets/img/imgtest2.png';
+// var schema = new Schema({
+//   img: { data: Buffer, contentType: String}
+// },  { collection: 'movie' });
+// var A = mongoose.model('A', schema);
+//
+// var images = new A;
+// images.img.data = fs.readFileSync(imgPath);
+// images.img.contentType = 'image/png';
+// images.save(function(err, a) {
+//   if(err) throw err;
+// else console.log('Saved img: ', a);
+// });
+//
+//
+// images.img.data = fs.readFileSync(imgSecondPath);
+// images.img.contentType = 'image/png';
+// images.save(function(err, a) {
+//   if(err) throw err;
+//   else console.log('Saved img: ', a);
+// });
 
-var schema = new Schema({
-  img: { data: Buffer, contentType: String}
-},  { collection: 'movie' });
-var A = mongoose.model('A', schema);
-
-var images = new A;
-images.img.data = fs.readFileSync(imgPath);
-images.img.contentType = 'image/png';
-images.save(function(err, a) {
-  if(err) throw err;
-else console.log('Saved img: ', a);
+app.get('/hello', function (req,res) {
+  req.collection.find({_id: ObjectId("591b02bbbbf5952aac67ebd2")}.toArray(function(err, docs) {
+    if (err) console.log(err);
+    else res.send(docs);
+  }))
 });
-
-
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
