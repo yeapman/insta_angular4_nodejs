@@ -7,13 +7,9 @@ import {mainPage} from "./main-page";
 
 @Injectable()
 export class mainPageService {
- private url = 'http://localhost:3000/hello';
-  // private extractData(res: Response) {
-  //   let body = res.json();
-  //   return body.data || { };
-  // }
+ private url = 'http://localhost:3000/picture';
 
-  constructor(private http: Http) {}
+ constructor(private http: Http) {}
 
  getData(): Observable<mainPage[]>  {
     return  this.http.get(this.url, {headers: contentHeaders})

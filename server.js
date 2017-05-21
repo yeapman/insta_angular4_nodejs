@@ -2,14 +2,17 @@
 var express = require('express');
 var path = require('path');
 var http = require('http');
-var fs = require('fs');
 var bodyParser = require('body-parser');
 var app = express();
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 var url = 'mongodb://localhost:27017/databasePlumbum';
 var UserController = require('./server/UserController');
 mongoose.connect(url);
-var db = mongoose.connection;
+var conn = mongoose.connection;
+var fs = require('fs');
+var Grid = require('gridfs-stream');
+Grid.mongo = mongoose.mongo;
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
@@ -28,11 +31,34 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
-db.on('error', console.error.bind(console, 'connection error: '));
-db.once('open', function() {
+conn.on('error', console.error.bind(console, 'connection error: '));
+conn.once('open', function() {
   console.log('we are connected!');
+  var gfs = Grid(conn.db);
+  // streaming to gridfs
+  //filename to store in mongodb
+
+  var writestream = gfs.createWriteStream({
+    image: 'imga.png',
+    content_type: 'image/png',
+    root: 'darciks'
+  });
+
+  fs.createReadStream('C:/Users/Admin/Desktop/instaproject/pt/assets/img/imga.png').pipe(writestream);
+
+  writestream.on('close', function(file) {
+    console.log(file.filename + 'written to DB');
+  });
+
+
 });
 
+
+// var gfs = Grid(conn.db);
+// gfs.files.find({ filename: 'myImage.png' }).toArray(function (err, files) {
+//   if (err) ...
+//   console.log(files);
+// })
 
 // /*working schema do add in db*/
 // var kotyaraSchema = mongoose.Schema({
@@ -64,16 +90,47 @@ db.once('open', function() {
 // });
 
 app.get('/hello', function(req, res) {
-  var collection = db.collection('darciks');
-  collection.find().toArray(function(err, items) {
-    if(err) {
-      res.send(err);
-    } else {
-      res.setHeader('Content-Type', 'application/json');
-      res.send(items)
-    }
+  // var collection = conn.collection('darciks');
+  // collection.find().toArray(function(err, items) {
+  //   if(err) {
+  //     res.send(err);
+  //   } else {
+  //     res.setHeader('Content-Type', 'application/json');
+  //     res.send(items)
+  //   }
+  //
+  // })
 
-  })
+
+  var gfs = Grid(conn.db);
+  gfs.files.find({ filename: 'imga.png' }).toArray(function (err, files) {
+    if (err) {
+      throw (err);
+    }
+    else {
+      res.send(files)
+    }
+  });
+
+
+
+});
+
+
+app.get('/picture', function(req, res) {
+  var gfs = Grid(conn.db);
+
+  try{
+    var readstream = gfs.createReadStream({ filename: 'imga.png'});
+    res.set('Content-Type', 'image/jpeg');
+    readstream.pipe(res);
+
+  }
+  catch (err) {
+    log.error(err);
+    return next(errors.create(404, "File not found."));
+  }
+
 });
 
 
