@@ -10,10 +10,31 @@ var url = 'mongodb://localhost:27017/databasePlumbum';
 var UserController = require('./server/UserController');
 mongoose.connect(url);
 var db = mongoose.connection;
+app.use(function (req, res, next) {
+
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  // Pass to next layer of middleware
+  next();
+});
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function() {
   console.log('we are connected!');
 });
+
+
+// /*working schema do add in db*/
 // var kotyaraSchema = mongoose.Schema({
 //   name: String
 // }, { collection: 'movie' });
@@ -43,10 +64,6 @@ db.once('open', function() {
 // });
 
 app.get('/hello', function(req, res) {
-  // db.darciks.find({}, 'name', function (err, docs) {
-  //   if (err) console.log(err);
-  //   else res.send(docs)
-  // });
   var collection = db.collection('darciks');
   collection.find().toArray(function(err, items) {
     if(err) {

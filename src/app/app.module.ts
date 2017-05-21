@@ -7,6 +7,7 @@ import {routing} from "./app.routing";
 import { MainPageComponent } from './main-page/main-page.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { FooterComponent } from './footer/footer.component';
+import {mainPageService} from "./main-page/main-page.service";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { FooterComponent } from './footer/footer.component';
     HttpModule,
     routing
   ],
-  providers: [],
+  providers: [mainPageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
