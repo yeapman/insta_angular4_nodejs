@@ -8,16 +8,15 @@ import {mainPageService} from "./main-page.service";
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
- mainPage: mainPage;
+ mainPage: mainPage[];
 
   constructor(private mainService: mainPageService) {
   }
 
   ngOnInit() {
     this.mainService.getData()
-      .subscribe((data) => {
-        return data;
-    })
+      .subscribe((data) => this.mainPage = data
+  );
   }
 
 }

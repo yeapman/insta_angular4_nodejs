@@ -69,7 +69,7 @@ app.get('/hello', function(req, res) {
     if(err) {
       res.send(err);
     } else {
-      console.log(items);
+      res.setHeader('Content-Type', 'application/json');
       res.send(items)
     }
 
