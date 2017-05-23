@@ -6,17 +6,21 @@ var bodyParser = require('body-parser');
 var app = express();
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var url = 'mongodb://localhost:27017/databasePlumbum';
+var url = 'mongodb://localhost:27017/levinsss';
 var UserController = require('./server/UserController');
 mongoose.connect(url);
 var conn = mongoose.connection;
 var fs = require('fs');
 var Grid = require('gridfs-stream');
 Grid.mongo = mongoose.mongo;
+var localUrl = {
+  imageUrl : "/assets/img/"
+};
+
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:9999');
 
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -33,26 +37,25 @@ app.use(function (req, res, next) {
 });
 conn.on('error', console.error.bind(console, 'connection error: '));
 conn.once('open', function() {
-  console.log('we are connected!');
-  var gfs = Grid(conn.db);
-  // streaming to gridfs
-  //filename to store in mongodb
-
-  var writestream = gfs.createWriteStream({
-    image: 'imga.png',
-    content_type: 'image/png',
-    root: 'darciks'
-  });
-
-  fs.createReadStream('C:/Users/Admin/Desktop/instaproject/pt/assets/img/imga.png').pipe(writestream);
-
-  writestream.on('close', function(file) {
-    console.log(file.filename + 'written to DB');
-  });
+  // console.log('we are connected!');
+  // var gfs = Grid(conn.db);
+  // // streaming to gridfs
+  // //filename to store in mongodb
+  //
+  // var writestream = gfs.createWriteStream({
+  //   image: 'imga.png',
+  //   content_type: 'image/png',
+  //   root: 'loop'
+  // });
+  //
+  // fs.createReadStream('C:/Users/Admin/Desktop/instaproject/pt/assets/img/imga.png').pipe(writestream);
+  //
+  // writestream.on('close', function(file) {
+  //   console.log(file.filename + 'written to DB');
+  // });
 
 
 });
-
 
 // var gfs = Grid(conn.db);
 // gfs.files.find({ filename: 'myImage.png' }).toArray(function (err, files) {
@@ -101,37 +104,35 @@ app.get('/hello', function(req, res) {
   //
   // })
 
+  // var gfs = Grid(conn.db);
+  // gfs.files.find({ filename: 'imga.png' }).toArray(function (err, files) {
+  //   if (err) {
+  //     throw (err);
+  //   }
+  //   else {
+  //     res.send(files)
+  //   }
+  // });
 
-  var gfs = Grid(conn.db);
-  gfs.files.find({ filename: 'imga.png' }).toArray(function (err, files) {
-    if (err) {
-      throw (err);
-    }
-    else {
-      res.send(files)
-    }
-  });
-
-
-
+  // res.set('Content-Type', 'image/png');
+  res.json((localUrl));
 });
 
-
-app.get('/picture', function(req, res) {
-  var gfs = Grid(conn.db);
-
-  try{
-    var readstream = gfs.createReadStream({ filename: 'imga.png'});
-    res.set('Content-Type', 'image/jpeg');
-    readstream.pipe(res);
-
-  }
-  catch (err) {
-    log.error(err);
-    return next(errors.create(404, "File not found."));
-  }
-
-});
+//
+// app.get('/picture', function(req, res) {
+//   var gfs = Grid(conn.db);
+//   var id = mongoose.Types.ObjectId("5922f8306d1bd9197bad31ce");
+//   try {
+//     var readstream = gfs.createReadStream({ filename: 'imga.png'});
+//     res.set('Content-Type', 'image/jpeg');
+//     readstream.pipe(res);
+//   }
+//   catch (err) {
+//     log.error(err);
+//     return next(errors.create(404, "File not found."));
+//   }
+//
+// });
 
 
 app.use(bodyParser.json());
@@ -139,7 +140,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use('/api', api);
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/users', UserController);
-
+app.use('/assets/img', express.static(path.join(__dirname, '/assets/img')));
 
 
 

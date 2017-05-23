@@ -7,16 +7,18 @@ import {mainPageService} from "./main-page.service";
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css']
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent extends mainPage implements OnInit {
  mainPage: mainPage[];
 
   constructor(private mainService: mainPageService) {
+    super()
   }
 
   ngOnInit() {
     this.mainService.getData()
-      .subscribe((data) => this.mainPage = data
-  );
+      .subscribe((data) => this.mainPage = data);
+
+    // this.getImgUrl();
   }
 
 }
