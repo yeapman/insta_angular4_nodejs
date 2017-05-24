@@ -119,14 +119,16 @@ app.get('/hello', function(req, res) {
 
 app.get('/names', function(req, res) {
 
-  fs.readdir(dir, function (err, files) {
-
-   var a = for(var i=0; i<files.length; i++) {
+   fs.readdir(dir, function (err, files) {
+  var process = function(){ for(var i=0; i<files.length; i++) {
      return files;
    }
-
+   process().map(function(items) {
+     imageUrls: items;
+   });
+};
 });
-
+  res.send(process);
 });
 
 
