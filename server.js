@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 var express = require('express');
 var path = require('path');
 var http = require('http');
@@ -6,16 +6,13 @@ var bodyParser = require('body-parser');
 var app = express();
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var user = require('./server/User.js');
 var url = 'mongodb://localhost:27017/levinsss';
-var UserController = require('./server/UserController');
 mongoose.connect(url);
 var conn = mongoose.connection;
 var fs = require('fs');
-var Grid = require('gridfs-stream');
-Grid.mongo = mongoose.mongo;
-var localUrl = {
-  imageUrl : "/assets/img/"
-};
+var dir = './assets/img';
+
 
 app.use(function (req, res, next) {
 
@@ -54,14 +51,8 @@ conn.once('open', function() {
   //   console.log(file.filename + 'written to DB');
   // });
 
-
 });
 
-// var gfs = Grid(conn.db);
-// gfs.files.find({ filename: 'myImage.png' }).toArray(function (err, files) {
-//   if (err) ...
-//   console.log(files);
-// })
 
 // /*working schema do add in db*/
 // var kotyaraSchema = mongoose.Schema({
@@ -93,6 +84,14 @@ conn.once('open', function() {
 // });
 
 app.get('/hello', function(req, res) {
+
+  user.find({}, function(err, users) {
+  if (err) throw err;
+
+  res.send(users)
+});
+
+
   // var collection = conn.collection('darciks');
   // collection.find().toArray(function(err, items) {
   //   if(err) {
@@ -115,8 +114,23 @@ app.get('/hello', function(req, res) {
   // });
 
   // res.set('Content-Type', 'image/png');
-  res.json((localUrl));
+
 });
+
+app.get('/names', function(req, res) {
+
+  fs.readdir(dir, function (err, files) {
+
+   var a = for(var i=0; i<files.length; i++) {
+     return files;
+   }
+
+});
+
+});
+
+
+
 
 //
 // app.get('/picture', function(req, res) {
@@ -139,7 +153,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use('/api', api);
 app.use(express.static(path.join(__dirname, 'dist')));
-app.use('/users', UserController);
 app.use('/assets/img', express.static(path.join(__dirname, '/assets/img')));
 
 

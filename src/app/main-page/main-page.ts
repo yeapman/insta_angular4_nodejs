@@ -1,6 +1,6 @@
 import {environment} from "./environment";
 export class mainPage {
-  imageUrl: string;
+  name: string;
 
 
   // generateUrl(url: string): string {
