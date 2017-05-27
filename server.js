@@ -17,7 +17,7 @@ var dir = './assets/img';
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:9999');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
 
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -118,21 +118,14 @@ app.get('/hello', function(req, res) {
 });
 
 app.get('/names', function(req, res) {
-
    fs.readdir(dir, function (err, files) {
-  var process = function(){ for(var i=0; i<files.length; i++) {
-     return files;
-   }
-   process().map(function(items) {
-     imageUrls: items;
-   });
-};
+  for (var i=0; i<files.length; i++) {
+    var trans = files;
+    return res.send(trans.map(items => ({imageUrl: items})))
+
+  }
 });
-  res.send(process);
 });
-
-
-
 
 //
 // app.get('/picture', function(req, res) {
