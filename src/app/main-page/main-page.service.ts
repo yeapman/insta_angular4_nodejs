@@ -6,7 +6,7 @@ import {contentHeaders} from "./headers";
 import {mainPage} from "./main-page";
 @Injectable()
 export class mainPageService {
- private url = 'http://localhost:3000/hello';
+ private url = 'http://localhost:3000/names';
 
  constructor(private http: Http) {}
 

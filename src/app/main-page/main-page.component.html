@@ -1,27 +1,15 @@
 <div class="main-menu">
   <div class="content">
     <div class="site-description">
-      <!--<span>Только картинки. Только хардкор.</span>-->
-      <span>heheheheheh</span>
+      <span>Только картинки. Только хардкор</span>
     </div>
-    <!--<div class="images">-->
-      <!--<div class="results">-->
-          <!--<span><img src="/assets/img/imgtest.png" sizes="(min-width: 40em) 80vw, 100vw" alt=""></span>-->
-        <!--</div>-->
-      <!--<div class="shell">-->
-        <!--<span><img src="/assets/img/imgtest.png" sizes="(min-width: 40em) 80vw, 100vw" alt=""></span>-->
-      <!--</div>-->
-      <!--<div class="shell">-->
-        <!--<span><img src="/assets/img/imgtest.png" sizes="(min-width: 40em) 80vw, 100vw" alt=""></span>-->
-      <!--</div>-->
-      <!--<div class="shell" >-->
-        <!--<span><img src="/assets/img/imgtest.png" sizes="(min-width: 40em) 80vw, 100vw" alt=""></span>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
 </div>
 
-<div class="test" *ngFor="let data of mainPage">
-  <h1>{{data.name }}</h1>
+<div class="content">
+  <div class="container">
+    <div class="images" *ngFor="let data of mainPage">
+      <img class="img" src={{data.imageUrl}}>
+    </div>
+  </div>
 </div>
 </div>

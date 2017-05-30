@@ -7,7 +7,7 @@
 }
 .site-description span {
   color: #040404;
-  font-size: 18px;
+  font-size: 24px;
 }
 .site-description {
   text-align: center;
@@ -27,4 +27,33 @@
   -webkit-flex-grow:1;
   flex-grow:1;
   max-width: 30%;
+}
+
+.container {
+  width:90%;
+  border: 1px solid black;
+  margin:0 auto;
+  display: flex;
+  -webkit-flex-wrap: wrap; /* Safari */
+  flex-wrap: wrap;
+}
+.images {
+  flex-direction: row;
+  width: 32%;
+  margin:0 auto;
+  height: 300px;
+  margin-top: 5px;
+}
+.img {
+  display: block;
+  width: 100%;
+  height:100%;
+}
+@media (max-width: 600px ) {
+  .images {
+    width: 97%;
+  }
+  .content {
+    width: 100%;
+  }
 }
