@@ -7,11 +7,12 @@ var app = express();
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var user = require('./server/User.js');
-var url = 'mongodb://localhost:27017/levinsss';
-mongoose.connect(url);
+var url = 'mongodb://levin:123123123QQQ@ds034797.mlab.com:34797/levins';
+mongoose.connect(url,{ useMongoClient: true });
 var conn = mongoose.connection;
 var fs = require('fs');
 var dir = './assets/img';
+
 
 
 app.use(function (req, res, next) {
@@ -50,7 +51,7 @@ conn.once('open', function() {
   // writestream.on('close', function(file) {
   //   console.log(file.filename + 'written to DB');
   // });
-
+console.log('lalal')
 });
 
 
