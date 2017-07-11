@@ -8,13 +8,15 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { FooterComponent } from './footer/footer.component';
 import {mainPageService} from "./main-page/main-page.service";
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     TopMenuComponent,
-    FooterComponent
+    FooterComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

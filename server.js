@@ -18,7 +18,7 @@ var dir = './assets/img';
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:9999');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
 
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -35,22 +35,6 @@ app.use(function (req, res, next) {
 });
 conn.on('error', console.error.bind(console, 'connection error: '));
 conn.once('open', function() {
-  // console.log('we are connected!');
-  // var gfs = Grid(conn.db);
-  // // streaming to gridfs
-  // //filename to store in mongodb
-  //
-  // var writestream = gfs.createWriteStream({
-  //   image: 'imga.png',
-  //   content_type: 'image/png',
-  //   root: 'loop'
-  // });
-  //
-  // fs.createReadStream('C:/Users/Admin/Desktop/instaproject/pt/assets/img/imga.png').pipe(writestream);
-  //
-  // writestream.on('close', function(file) {
-  //   console.log(file.filename + 'written to DB');
-  // });
 console.log('lalal')
 });
 

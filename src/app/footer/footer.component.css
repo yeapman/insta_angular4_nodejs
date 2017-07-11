@@ -1,0 +1,16 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+}
+.spacer {
+  width: 80%;
+  flex-grow: 1;
+ border: 1px solid #d6d6d6;
+  margin: 0 auto;
+}
+.copyright {
+  flex-grow: 1;
+  color: #888;
+  width: 80%;
+  margin: 0 auto;
+}

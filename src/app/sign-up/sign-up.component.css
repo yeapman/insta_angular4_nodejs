@@ -1,0 +1,23 @@
+.sign-up-form {
+  margin-top: 30px;
+  margin-bottom:30px;
+
+}
+
+.sign-up-form_border {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.name-field, .email-field {
+  flex-grow: 1;
+}
+.confirm-btn {
+  width: 145px;
+  margin: 0 auto;
+}
+.sign-up-form_border {
+  width: 300px;
+  margin: 0 auto;
+  border: 1px solid black;
+}
