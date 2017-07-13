@@ -1,5 +1,5 @@
 .sign-up-form {
-  margin-top: 30px;
+  margin-top: 10%;
   margin-bottom:30px;
 
 }
@@ -21,3 +21,63 @@
   margin: 0 auto;
   border: 1px solid black;
 }
+.sign-up-form_border {
+ padding: 50px;
+}
+.name-field, .email-field {
+  margin-top: 10px;
+}
+.name, .email {
+  border: 1px solid black;
+  height:30px;
+  padding-left: 10px;
+  font-size: 15px;
+}
+.confirm-btn {
+  margin-top: 25px;
+  border: 1px solid black;
+  background-color: white;
+  font-size: 15px;
+cursor:pointer;
+  height: 25px;
+}
+
+.sign-up-first {
+  width: 424px;
+  margin: 0 auto;
+  border: 1px solid black;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.sign-up-second {
+  width: 448px;
+  margin: 0 auto;
+  border: 1px solid black;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.sign-up-third {
+  width: 472px;
+  margin: 0 auto;
+  border: 1px solid black;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.sign-up-fourth {
+  width: 496px;
+  margin: 0 auto;
+  border: 1px solid black;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.sign-up-six {
+  width: 520px;
+  margin: 0 auto;
+  border: 1px solid black;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+/*.sign-up-form {*/
+  /*background-color: #efefef;*/
+/*}*/

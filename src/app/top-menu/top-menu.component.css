@@ -40,3 +40,9 @@
 .logo span, .sign-in span, .sign-up span {
   color: white;
 }
+.sign-up span, .sign-in span {
+  cursor: pointer;
+}
+.logo {
+  cursor: pointer;
+}
